@@ -1,0 +1,25 @@
+class Stack {
+    constructor() {
+        this.data = []
+    }
+
+    push(value) {
+       this.data.push(value)
+       return value
+    }
+
+    pop() {
+        return this.data.length ? this.data.pop() : null
+    }
+
+    peak() {
+        return this.data.length ? this.data[this.data.length - 1] : null
+    }
+
+    _all() {
+       console.log(this.data)
+    }
+
+}
+
+var stack = new Stack()
