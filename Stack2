@@ -1,0 +1,90 @@
+class Stack {
+    constructor() {
+        this.top = null
+        this.bottom = null
+        this.length = 0
+    }
+
+    push(value) {
+        const newNode = {
+            value: value,
+            prev: null
+        }
+
+        if (this.top !== null) {
+//             this.top.next = newNode
+//             this.top = newNode
+            newNode.prev = this.top
+            this.top = newNode
+        } else {
+            this.top = newNode
+            this.bottom = newNode
+        }
+
+        this.length++    
+        return newNode.value
+    }
+
+    pop() {
+        if (this.top !== null) {
+            let old = this.top.value
+            this.top = this.top.prev
+            if (this.top === null) {
+                this.bottom = null
+            }
+            this.length--
+            return old
+        }
+        return null
+
+    }
+
+//     pop() {
+//         let i = -1
+//         let current = this.bottom
+//         let prev = null
+//         while (current) {
+//             if (++i === this.length - 1) {
+
+//                 if (current === this.bottom) {
+//                     this.bottom = this.bottom.next
+//                     this.length--
+//                     if (this.bottom === null) {
+//                         this.top = null
+//                     }
+//                     return current.value
+//                 }
+//                 prev.next = current.next
+//                 this.length--
+//                 if (prev.next === null) {
+//                     this.top = prev
+//                 }
+
+//                 return current.value
+//             }
+//             prev = current
+//             current = current.next   
+//        }
+
+//        return null
+//     }
+
+    peak() {
+        return this.top ? this.top.value : null
+    }
+
+    _all() {
+        const resArr = []
+        let current = this.top
+        while(current) {
+            resArr.push(current.value)
+            current = current.prev
+        }
+        
+        console.log(resArr)
+        return resArr
+    }
+
+}
+
+var stack = new Stack()
