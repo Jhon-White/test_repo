@@ -1,0 +1,49 @@
+// let arr1 = [1,2,3]
+// let arr2 = [4,1,9]
+
+// let arr1 = [1,2,3]
+// let arr2 = [4,9]
+
+let arr1 = [1,2,3]
+let arr2 = [4,9,5]
+
+let up = null
+
+function sameSquared(arr1, arr2) {
+    const map = {}
+    up = map
+    if (arr1.length !== arr2.length) {
+        return false
+    }
+
+    for (let i = 0; i < arr2.length; i++) {
+        map[arr2[i]] = ++map[arr2[i]] || 1
+
+//         console.log(map)
+    }
+
+    let counter = 0
+
+    for (let i = 0; i < arr1.length; i++) {
+        let squared = Math.pow(arr1[i], 2)
+//         console.log(squared) 
+        if (map[squared] !== undefined) {
+            if (map[squared] > 0) {
+                map[squared]--
+                counter++
+            }
+            
+//             console.log(counter)
+        }
+    }
+    console.log('counter: ', counter)
+
+    return counter == arr1.length
+}
+
+// sameSquared(arr1, arr2)
+let a = sameSquared([1, 2, 1], [4, 4, 1]); // must be false
+let b = sameSquared([1, 2, 2], [4, 4, 1]); // must be true
+let c = sameSquared([2, 3, 6, 8, 8], [64, 36, 4, 9, 64]); // true
+
+console.log(a, b, c)
