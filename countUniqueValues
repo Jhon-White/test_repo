@@ -15,31 +15,47 @@
 //     return counter
 // }
 
-function countUniqueValues(arr) {
+// function countUniqueValues(arr) {
 
-    let temp = undefined;
-    let counter = 0
-    for(let i = 0, j = arr.length - 1; i < j; ) {
+//     let temp = undefined;
+//     let counter = 0
+//     for(let i = 0, j = arr.length - 1; i < j; ) {
         
-        if (arr[i] === arr[i - 1]) {
-            i++
-            continue
-        } else {
-            counter++
-            i++
-        }
+//         if (arr[i] === arr[i - 1]) {
+//             i++
+//             continue
+//         } else {
+//             counter++
+//             i++
+//         }
 
-        if (arr[j] === arr[j + 1]) {
-            j--
+//         if (arr[j] === arr[j + 1]) {
+//             j--
+//             continue
+//         } else {
+//             counter++
+//             j--
+//         }
+        
+//     }
+
+//     return counter
+// }
+
+function countUniqueValues(arr) {
+    let i = 0
+    for(j = 1; j < arr.length; j++) {
+        
+        if (arr[i] === arr[j]) {
             continue
         } else {
-            counter++
-            j--
+            i++
+            arr[i] = arr[j]
         }
         
     }
 
-    return counter
+    return i ? i + 1 : i
 }
 
 let res = {}
