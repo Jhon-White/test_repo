@@ -1,0 +1,56 @@
+// Given a sorted array of integers, write a function called search
+// that accepts a value and returns the index where the value passed
+// to the function is located. If the values is not found, return -1
+
+
+function search(arr, value) {
+    
+    let i = 0
+//     let g1 = 0
+//     let g2 = arr.length - 1
+    let counter = 0
+    let start = 0
+    
+    let end = arr.length - 1
+    let middle = Math.floor((end - start) / 2)
+
+//     if (value === arr[middle]) {
+//             return middle
+//     }
+
+    while(middle !== end) {
+        console.log(start, middle, end)
+        if (value < arr[middle]) {
+            end = middle
+            middle = Math.floor((end - start) / 2)
+            continue
+        }
+
+        if (value > arr[middle]) {
+            start = middle    
+            middle = Math.floor((end + start) / 2)
+            if (start === middle) {
+                middle++
+            }
+        }
+
+        if (value === arr[middle]) {
+            return middle
+        }
+        
+        counter++
+        if (counter > 100) {
+            console.log("oops! infinite loop")
+            return
+        }
+
+        
+    }
+
+    return -1
+
+}
+
+// let res1 = search([1,2,3,4,5,6],4) // 3
+console.log(search([1,2,3,4,5,6],6)) // 5
+// search([1,2,3,4,5,6],11) // -1
