@@ -1,0 +1,98 @@
+function factorial(n) {
+    
+    if (Math.abs(n) === 1) {
+        return 1
+    }
+
+    return n * factorial(n - 1)
+}
+
+function factorial2(n) {
+    let res = 1
+    for (let i = 1; i <= n; i++) {
+        res *= i
+    }
+    return res
+}
+
+// console.log(factorial(5))
+console.log(factorial2(-5))
+
+// ------------------------------------------------
+
+function fibonaci(n) {
+    if (n === 0) return 0
+    if (n === 1) return 1
+    
+    let res = 1
+    let first = 0
+    let second = 1
+    for (let i = 2; i <= n; i++) {
+        res = first + second
+        first = second
+        second = res
+    }
+
+    return res
+
+}
+let _calculations = 0
+function fibonaci2(n) {
+    
+    if (n === 0) return 0
+    if (n === 1) return 1
+
+    function helper(first, second, k) {
+        _calculations++
+        if (k === n) {      
+           return first + second
+        }   
+        return helper(second, first + second, k + 1)
+    }
+
+    return helper(0, 1, 2)
+}
+
+let calculations = 0
+function fibonacci(n) {
+    calculations++
+    if (n < 2) {
+        return n
+    }
+
+    return fibonacci(n - 2) + fibonacci(n - 1)
+}
+
+let cache = {}
+let calculations2 = 0
+function fibonacci2(n) {
+    calculations2++
+    if (n < 2) {
+        return n
+    }
+
+    let first, second
+
+    if (cache[n - 2]) {
+        first = cache[n - 2]
+    } else {
+        first = fibonacci2(n - 2)
+        cache[n - 2] = first
+    }
+
+    if (cache[n - 1]) {
+        second = cache[n - 1]
+    } else {
+        second = fibonacci2(n - 1)
+        cache[n - 1] = second
+    }
+
+    return first + second
+}
+
+// console.log(fibonaci(43))
+console.log(fibonaci2(40))
+console.log(fibonacci(40))
+console.log(fibonacci2(40))
+
+// 0 1 1 2 3 5 8 13 21 34
